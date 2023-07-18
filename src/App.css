@@ -1,0 +1,38 @@
+.App{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.topics{
+  background-color: black;
+  height: 100vh;
+  width: 25vw;
+}
+.chat{
+  overflow-y: auto;
+  height: 100vh;
+  width: 75vw;
+  background-color: grey;
+}
+.chat-form-input{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width:65vw;
+  height:5vh;
+  background: transparent;
+  border: 1px solid black;
+  position: fixed;
+  top: 90vh;
+  left: 30vw;
+}
+.chat-form-input textarea{
+  overflow-y: auto;
+  resize: none;
+  background: transparent;
+  border: None;
+  height: 100%;
+  width: 80%;
+}
+.chat-form-input textarea:focus{
+  border: none;
+  outline: none;
+}
