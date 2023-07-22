@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 3fr;
 }
 .topics{
-  background-color: black;
+  background-color: #101211;
   height: 100vh;
   width: 25vw;
 }
@@ -11,28 +11,81 @@
   overflow-y: auto;
   height: 100vh;
   width: 75vw;
-  background-color: grey;
+  background-color: #1e1f1e;
+  justify-content: center;
+  align-items: center;
+}
+.chat-messages{
+  width:100vw;
+  height:80vh;
+  background: transparent;
+  color: white;
+  font-size: 110%;
+  display: grid;
+  grid-template-columns: 1fr;
+  height: auto;
+}
+.user{
+  width:100vw;
+  word-wrap: break-word;
+  height: auto;
+  padding:1% 5%;
+  background-color: #242625;
+}
+.bot{
+  width:50vw;
+  max-width: 85vw;
+  word-wrap: break-word;
+  height: auto;
+  padding:1% 5%;
+  background: transparent;
+}
+form{
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  justify-content: center;
+  align-items: center;
 }
 .chat-form-input{
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  width:65vw;
+  width:55vw;
   height:5vh;
-  background: transparent;
+  background: #242625;;
   border: 1px solid black;
+  border-radius:10px;
   position: fixed;
   top: 90vh;
-  left: 30vw;
+  left: 35vw;
+  color: white;
 }
 .chat-form-input textarea{
   overflow-y: auto;
   resize: none;
   background: transparent;
   border: None;
-  height: 100%;
-  width: 80%;
+  height: 65%;
+  width: 90%;
+  color: white;
+  font-size: 150%;
+  position: relative;
+  top:22%;
 }
 .chat-form-input textarea:focus{
   border: none;
   outline: none;
+}
+.chat-form-input Button{
+  margin-left:0px;
+  margin-right:0 px;
+  float: right;
+  position: relative;
+  top:22%;
+  left:-1%;
+  color: white;
+  background: transparent;
+  border: none;
+}
+.chat-form-input Button:hover{
+  cursor: pointer;
+  background-color: #1e58bd;
+  border-radius: 2px;
 }
