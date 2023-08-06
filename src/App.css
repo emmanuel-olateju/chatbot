@@ -1,6 +1,7 @@
 .App{
   display: grid;
   grid-template-columns: 1fr 3fr;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .topics{
   background-color: #101211;
@@ -26,15 +27,15 @@
   height: auto;
 }
 .user{
-  width:100vw;
+  width:75vw;
   word-wrap: break-word;
   height: auto;
   padding:1% 5%;
   background-color: #242625;
 }
 .bot{
-  width:50vw;
-  max-width: 85vw;
+  width:75vw;
+  max-width: 75vw;
   word-wrap: break-word;
   height: auto;
   padding:1% 5%;
@@ -88,4 +89,49 @@ form{
   cursor: pointer;
   background-color: #1e58bd;
   border-radius: 2px;
+}
+
+.form-container{
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  /* top: 30vh; */
+  align-items: center;
+  background-color: black;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.form-container > input:first-child {
+  margin-top: 0%;
+}
+.form-container input{
+  font-size: 130%;
+  margin-top: 7%;
+  width: 20vw;
+  height: 1vh;
+  background: transparent;
+  color: white;
+  border-color: none;
+  border-radius: 5px;
+  padding: 5% 5%;
+  font-family: 'Courier New', Courier, monospace;
+}
+.form-container button{
+  margin-top: 10%;
+  width: 50%;
+  height: 80%;
+  font-size: 130%;
+  position: relative;
+  left: 30%;
+  background: transparent;
+  color: white;
+  border: none;
+}
+.form-container button:hover{
+  background: green;
 }
