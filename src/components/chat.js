@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 // import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const API_KEY = 'AIzaSyCAA7XNVJ7GnXFajT0rVRLBf9Pt872yYL0';
+const genAI = new GoogleGenerativeAI(API_KEY);
 
 const Chat = () => {
   // let messages = [];
@@ -13,9 +17,6 @@ const Chat = () => {
   // let receivedData = "waiting for your input";
   const [error, setError] = useState(null);
   const divRef = useRef(null);
-
-  const gptResponseURL = 'http://127.0.0.1:5000/gptRespond';
-  const gptQueryURL = 'http://127.0.0.1:5000/sendQuery';
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
@@ -31,51 +32,32 @@ const Chat = () => {
       }
       setInputs([...inputs, inputText]);
 
-      //Send input to server
-
-      //Fetch to input from server
-      fetch(gptResponseURL,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({'query':inputText}),
-      })
-        .then(res => res.text())
-        .then(
-          data => {
-            setReceivedData(data)
-            // console.log(receivedData);
-            setError(null);
-          })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          setError('Error fetching data. Please try again.');
-        });
-
-      const response = generateChatGPTResponse();
-      const newMessage = {
-        id: newInput.id,
-        text: response,
-        sender: 'bot',
-      };
-      setMessages([...messages, newMessage]);
-      console.log([newMessage.text]);
-
-      setInputText('');
-
-      const chatDiv = document.querySelector('.chat-messages');
-      if(chatDiv){
-        divRef.current = chatDiv;
-        divRef.current.insertAdjacentHTML(
-          'beforeend',
-          `<div><div class="user">${newInput.text}</div><div class="bot">${newMessage.text}</div></div>`
-        )
+      const getResponse = async (prompt) => {
+        const model = genAI.getGenerativeModel({model: "gemini-pro"});
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        let bot = response.text();
+        return bot;
       }
-
-      // messages.map((member) => {
-      //   console.log(member.id);
-      // });
+   
+      getResponse(inputText).then(bot => {
+        const newMessage = {
+          id: newInput.id,
+          text: bot,
+          sender: 'bot',
+        };
+        setMessages([...messages, newMessage]);
+        // console.log([newMessage.text]);
+        const chatDiv = document.querySelector('.chat-messages');
+        if(chatDiv){
+          divRef.current = chatDiv;
+          divRef.current.insertAdjacentHTML(
+            'beforeend',
+            `<div><div class="user">${newInput.text}</div><div class="bot">${newMessage.text}</div></div>`
+          )
+        }
+      });
+      setInputText('');
     }
   }, [btnState]);
 
